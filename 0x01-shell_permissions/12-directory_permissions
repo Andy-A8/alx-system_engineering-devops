@@ -1,0 +1,2 @@
+#!/bin/bash
+mkdir mr_dir chmod 751
