@@ -7,8 +7,8 @@
 # Must use for loop
 # Do not display hidden files
 
-list=$(ls)
+part_list=$(ls)
 
-for i in $list; do
+for i in $part_list; do
     echo "$i" | cut -d '-' -f2
 done
