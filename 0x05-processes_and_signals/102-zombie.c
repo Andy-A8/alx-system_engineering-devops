@@ -26,12 +26,12 @@ int main(void)
 	char i = 0;
 	pid_t zombie;
 
-	while (1 < 5)
+	while (i < 5)
 	{
 		zombie = fork();
 		if (zombie > 0)
 		{
-			printf("Zombie process, PID: %d\n", zombie);
+			printf("Zombie process created, PID: %d\n", zombie);
 			sleep(1);
 			i++;
 		}
