@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-# Pings an IP address passed as an argument
+# Pings an IP address passed as an argument.
+#  Accept string as argument, display *message* if no argument, ping IP 5 times
 
 if [ -z "$1" ]
 then
