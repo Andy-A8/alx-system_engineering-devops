@@ -1,0 +1,11 @@
+# SSH client configuration must be configured to:
+#	use the private key
+#	refuse to authenticate using a password
+
+Host *
+    PasswordAuthentication no
+    IdentityFile ~/.ssh/school
+    SendEnv LANG LC_*
+    HashKnownHosts yes
+    GSSAPIAuthentication yes
+    GSSAPIDelegateCredentials no
