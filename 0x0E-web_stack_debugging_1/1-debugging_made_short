@@ -2,4 +2,4 @@
 # Configures an Nginx server to listen on port 80 (sweet and short)
 ln -sf /etc/nginx/sites-available/default /etc/nginx/sites-enabled/default
 service nginx start
-pkil -o nginx
+pkil -1 nginx
