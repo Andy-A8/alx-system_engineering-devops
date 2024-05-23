@@ -1,8 +1,9 @@
 #!/usr/bin/python3
 """Returns information about the to-do list for a given employee ID."""
+import json
 import requests
 import sys
-import json
+
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
