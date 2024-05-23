@@ -31,6 +31,6 @@ if __name__ == "__main__":
                         completed += 1
                 total = len(todo_l)
             if type(user_d) is dict and user_d != {}:
-                employee = 'Employee {} is done with tasks({}/{}):\n'\
+                emp_Id = 'Employee {} is done with tasks({}/{}):\n'\
                     .format(user_d.get('name'), completed, total)
-                print(employee + tasks, end='')
+                print(emp_Id + tasks, end='')
