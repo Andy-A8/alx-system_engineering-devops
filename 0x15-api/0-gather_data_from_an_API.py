@@ -1,13 +1,12 @@
 #!/usr/bin/python3
 """Returns information about the to-do list for a given employee ID."""
-import json
 import requests
 import sys
-
+import json
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
-        url = 'https://jsonplaceholder.typicode.com/'
+        url = "https://jsonplaceholder.typicode.com/"
         user_resp = requests.get(url + 'users/{}'.format(sys.argv[1]))
         todo_resp = requests.get(url + 'todos?userId={}'.format(sys.argv[1]))
         if all([user_resp, todo_resp]) is not None:
