@@ -1,10 +1,11 @@
 #!/usr/bin/python3
 """Extend task #0 python script to export data in the JSON format"""
 
+import collections
+import json
 import requests
 import sys
-import json
-import collections
+
 
 if __name__ == "__main__":
     if len(sys.argv) == 2:
