@@ -3,10 +3,11 @@
 # The redirection must be a “301 Moved Permanently”
 # Based on nginx installation script
 
-sudo apt-get update
-sudo apt-get -y install nginx
+new_conf="server_name _;\n\trewrite ^/redirect_me/$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+
+apt-get update
+apt-get -y install nginx
 ufw allow 'Nginx HTTP'
 echo "Hello World!" | sudo tee /var/www/html/index.html
-replacement_string="\tlocation /redirect_me {\n\t\treturn 301 https://www.youtube.com/watch?v=QH2-TGUlwu4;\n\t}"
-sudo sed -i "/^\tlocation \// i\ $replacement_string" /etc/nginx/sites-available default
-sudo service nginx restart
+sed -i "s|server_name\ _;|$new_conf|" /etc/nginx/sites-available/default
+service nginx restart
