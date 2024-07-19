@@ -4,16 +4,16 @@
 # The page must return an HTTP 404 error code
 # Use redirection script above
 
+new_conf="server_name _;\n\trewrite ^/redirect_me/$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+location_error="location =  /404.html {\n\t\troot /var/www/html/;\n\t\tinternal;\n"
+
 apt-get update
 apt-get -y install nginx
 ufw allow 'Nginx HTTP'
-echo "Hello World!" > /var/www/html/index.html
-link="https://www.youtube.com/watch?v=QH2-TGUlwu4"
-replacement_string="server_name _;\n\trewrite^/redirect_me/$ $link permanent;"
-sed -i "s/server_name _;/$replacement_string/" /etc/nginx/sites-available/default
+echo "Hello World!" | sudo tee /var/www/html/index.html
+sed -i "s|server_name\ _;|$new_conf|" /etc/nginx/sites-available/default
 
-echo "Ceci n'est pas une page" > /var/www/html/index.html
-replacement_string="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
-sed -i "s/listen 80 default_server;/$replacement_string/" /etc/nginx/sites-enabled/default
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+sed -i "s/listen 80 default_server;/error_page 404 /404.html;\n\t$location_error\t" /etc/nginx/sites-available/default
 
 service nginx restart
