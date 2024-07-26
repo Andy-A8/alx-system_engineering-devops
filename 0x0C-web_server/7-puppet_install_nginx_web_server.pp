@@ -1,4 +1,4 @@
-# Install and configure Nginx server with puppet
+# Install and configure Nginx server with puppet.
 
 $new_config="server_name _;\n\trewrite ^/redirect_me/$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
 
