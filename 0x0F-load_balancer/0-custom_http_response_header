@@ -1,0 +1,34 @@
+#!/usr/bin/env bash
+# Configure Nginx so that its HTTP response contains a custom header:
+#       The name of the custom HTTP header must be X-Served-By.
+#       The value of the custom HTTP header must be the hostname of
+#       the server Nginx is running on.
+
+new_conf="server_name _;\n\tadd_header X-Served-By \$hostname;\n\trewrite ^/redirect_me/$ https://www.youtube.com/watch?v=QH2-TGUlwu4 permanent;"
+
+error_code="listen 80 default_server;\n\terror_page 404 \/404.html;\n\tlocation = \/404.html {\n\t\troot \/var\/www\/html;\n\t\tinternal;\n\t}"
+
+# sudo is not used due to root mode
+
+apt-get update
+apt-get -y install nginx
+
+# configure the firewall to allow requests through port 80
+ufw allow 'Nginx HTTP'
+
+mkdir -p /var/www/html
+
+# Create the index page
+echo "Hello World!" | sudo tee /var/www/html/index.html
+
+# Create the error 404 page
+echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
+
+# Configure 301 redirection and custom HTTP header
+sed -i "s|server_name\ _;|$new_conf|" /etc/nginx/sites-available/default
+
+# Configure 404 error redirection
+sed -i "s/listen 80 default_server;/$error_code/" /etc/nginx/sites-available/default
+
+# Restart nginx to recognise configuration
+service nginx restart
