@@ -6,14 +6,13 @@ package {'nginx':
   ensure  => 'present',
 }
 
-exec ('install':
-  command  => 'sudo ap-get update ; sudo apt-get -y install nginx ; ufw allow 'Nginx HTTP',
+exec {'install':
+  command  => 'apt-get update ; sudo apt-get -y install nginx',
   provider => shell,
 }
 
-exec {'string':
-  command  => 'echo "Hello World!" | sudo tee /var/www/html/index.html,
-  provider => shell',
+exec {'Hello':
+  command  => 'echo "Hello World!" | sudo tee /var/www/html/index.html',  provider => shell,
 }
 
 exec {'redirect_301':
@@ -22,6 +21,6 @@ exec {'redirect_301':
 }
 
 exec {'run':
-  command  => 'sudo service nginx restart',
+  command  => 'service nginx restart',
   provider => shell,
 }
