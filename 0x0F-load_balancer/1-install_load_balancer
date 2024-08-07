@@ -1,4 +1,4 @@
-!/usr/bin/env bash
+#!/usr/bin/env bash
 # Install and configure HAproxy on your lb-01 server:
 #       Configure HAproxy so that it send traffic to web-01 and web-02
 #       Distribute requests using a roundrobin algorithm
