@@ -4,14 +4,10 @@
 #       Distribute requests using a roundrobin algorithm
 #       Make sure that HAproxy can be managed via an init script
 
-# Enable dedicated PPA
-sudo apt-get install --no-install-recommends software-properties-common
-sudo add-apt-repository ppa:vbernat/haproxy-2.8
-
-sudo apt-get update
+sudo apt-get -y update
 
 # Install HAProxy
-sudo apt-get -y install haproxy=2.8.\*
+sudo apt-get -y install haproxy
 
 # Configure load balancer
 server_config="
