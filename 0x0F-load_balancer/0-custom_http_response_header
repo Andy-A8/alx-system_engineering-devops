@@ -19,7 +19,7 @@ ufw allow 'Nginx HTTP'
 mkdir -p /var/www/html
 
 # Create the index page
-echo "Hello World!" | sudo tee /var/www/html/index.html
+echo "Hello World! 2" | sudo tee /var/www/html/index.html
 
 # Create the error 404 page
 echo "Ceci n'est pas une page" | sudo tee /var/www/html/404.html
